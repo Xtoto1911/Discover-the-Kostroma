@@ -114,8 +114,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5722597398714287025}
+  - component: {fileID: 4641392759613647063}
   m_Layer: 0
-  m_Name: EventPoint
+  m_Name: EventPointQuestions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,3 +138,15 @@ Transform:
   - {fileID: 3193053836903712485}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4641392759613647063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5276258346820293777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dcdd70a4534d764cb6f7eb8d19fca3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
