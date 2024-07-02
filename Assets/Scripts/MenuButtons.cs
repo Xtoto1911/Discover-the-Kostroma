@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // Добавляем пространство имен для работы со сценами
 
 public class Buttons : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Buttons : MonoBehaviour
     public GameObject SettingsScreen;
     public GameObject ShopScreen;
     public GameObject AreaSelectingScreen;
+    public GameObject VerticalScroll;
+    public GameObject TestBtn;
+    public GameObject BuyingPanel;
 
     public Button MenuBtn;
     public Button AreasBtn;
@@ -17,6 +21,11 @@ public class Buttons : MonoBehaviour
     public Button ShopBtn;
     public Button SettingBtn;
     public Button BackBtn;
+    public Button CentalBtn;
+    public Button FabrichBtn;
+    public Button ZavoljskBtn;
+    public Button ExitBtn;
+    public Button BuyBtn;
 
     private Vector2 menuBtnOriginalPosition;
     private Vector2[] buttonOffsets = new Vector2[]
@@ -49,6 +58,16 @@ public class Buttons : MonoBehaviour
         ShopBtn.onClick.AddListener(() => OnMenuButtonClick(ShopScreen));
         SettingBtn.onClick.AddListener(() => OnMenuButtonClick(SettingsScreen));
         BackBtn.onClick.AddListener(() => OnBackButtonClick());
+
+        CentalBtn.onClick.AddListener(() => OnCentalButtonClick());
+        FabrichBtn.onClick.AddListener(() => OnCityButtonClick());
+        ZavoljskBtn.onClick.AddListener(() => OnCityButtonClick());
+        ExitBtn.onClick.AddListener(() => OnExitButtonClick());
+        BuyBtn.onClick.AddListener(() => OnBuyButtonClick());
+
+        TestBtn.GetComponent<Button>().onClick.AddListener(() => OnTestButtonClick());
+
+        BuyingPanel.SetActive(false); // Ensure BuyingPanel is hidden at the start
     }
 
     void ToggleMenu()
@@ -96,12 +115,46 @@ public class Buttons : MonoBehaviour
         BackBtn.gameObject.SetActive(true);
     }
 
+    void OnCityButtonClick()
+    {
+        VerticalScroll.SetActive(false);
+        TestBtn.SetActive(false);
+        BuyingPanel.SetActive(true);
+    }
+
+    void OnExitButtonClick()
+    {
+        BuyingPanel.SetActive(false);
+        VerticalScroll.SetActive(true);
+        TestBtn.SetActive(true);
+    }
+
     void OnBackButtonClick()
     {
         ShowScreen(MainScreen);
         MenuBtn.gameObject.SetActive(true);
         BackBtn.gameObject.SetActive(false);
         ResetMenuButtons();
+        // Ensure BuyingPanel is hidden and VerticalScroll and TestBtn are visible
+        BuyingPanel.SetActive(false);
+        VerticalScroll.SetActive(true);
+        TestBtn.SetActive(true);
+    }
+
+    void OnBuyButtonClick()
+    {
+        // Placeholder for Buy button functionality
+        Debug.Log("Buy button clicked");
+    }
+
+    void OnTestButtonClick()
+    {
+        SceneManager.LoadScene("test");
+    }
+
+    void OnCentalButtonClick()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 
     void ShowScreen(GameObject screenToShow)
