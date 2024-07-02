@@ -33,6 +33,8 @@ public class SpawnFog : MonoBehaviour
 
     [SerializeField] string[] defArr;
 
+    [SerializeField] float clickDistance;
+
     void Start()
     {
         _poolMissedEvent = new PoolMissedEvent(SavePath);
@@ -50,6 +52,7 @@ public class SpawnFog : MonoBehaviour
             _locations[i] = Conversions.StringToLatLon(locationString);
             var instance = Instantiate(_markerPrefab, transform);
             instance.GetComponent<EvenPoint>()._position = _locations[i];
+            instance.GetComponent<EvenPoint>().ActiveDistace = clickDistance;
             instance.transform.localPosition = _map.GeoToWorldPosition(_locations[i], true);
             instance.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
             _spawnedObjects.Add(instance);
@@ -65,6 +68,7 @@ public class SpawnFog : MonoBehaviour
         {
             var spawnedObject = _spawnedObjects[i];
             var location = _locations[i];
+            _spawnedObjects[i].SetActive(false);
             spawnedObject.transform.localPosition = _map.GeoToWorldPosition(location, true);
             spawnedObject.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
         }
@@ -81,7 +85,7 @@ public class SpawnFog : MonoBehaviour
             Vector3 center = (minPoint + maxPoint) / 2f;
             Vector3 size = maxPoint - minPoint;
             rectangleInstance.transform.position = new Vector3(center.x,center.y + 15,center.z);
-            rectangleInstance.transform.localScale = new Vector3(size.x, 400f, size.z);
+            rectangleInstance.transform.localScale = new Vector3(size.x, size.x, size.z);
             flag = true;
         }
     }

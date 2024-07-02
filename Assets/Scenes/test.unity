@@ -1668,11 +1668,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 1787700008}
-  _locationStrings: []
   _spawnScale: 1
   _markerPrefab: {fileID: 5276258346820293777, guid: acc5a6d26d67c684794dc62e7662c7e5, type: 3}
   _rectanglePrefab: {fileID: 8164402251816540447, guid: 0d8ffcdcadb228d4585dc8afff9e1c52, type: 3}
-  SavePath: FogCenter.json
+  SavePath: FogTest.json
+  defArr:
+  - 57.737592226866056, 40.91999606765478
+  - 57.73679760506654, 40.91867887907911
+  - 57.73576697866771, 40.92082607689424
+  - 57.73634971963204, 40.921836522924885
+  clickDistance: 25
 --- !u!1 &367130806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,10 +2799,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 1787700008}
-  _locationStrings: []
   _spawnScale: 5
   _markerPrefab: {fileID: 5276258346820293777, guid: acc5a6d26d67c684794dc62e7662c7e5, type: 3}
-  SavePath: QuestCenter.json
+  SavePath: QuestTest.json
+  defArr:
+  - 57.73696829509298, 40.91961796398265
+  - 57.73638343163195, 40.920771945856885
+  clickDistance: 25
 --- !u!1 &761882791
 GameObject:
   m_ObjectHideFlags: 0
@@ -4734,7 +4742,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80dffeb3d9e4b3641b9823d770635a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 1400164390}
 --- !u!114 &1400164393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4877,7 +4884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114658503893516242, guid: 35ce2bb4caba9434db5e656796b632b1, type: 3}
       propertyPath: _latitudeLongitude.Array.data[0]
-      value: 57.761517723854084, 40.928829577435096
+      value: 57.73620002484138, 40.92099788642585
       objectReference: {fileID: 0}
     - target: {fileID: 114658503893516242, guid: 35ce2bb4caba9434db5e656796b632b1, type: 3}
       propertyPath: _latitudeLongitude.Array.data[1]

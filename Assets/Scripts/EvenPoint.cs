@@ -6,9 +6,24 @@ using Mapbox.Utils;
 
 public class EvenPoint : MonoBehaviour
 {
-    LocationStatus _player;
+    private LocationStatus _player;
+    [SerializeField]private float activDistace;
     [SerializeField] public Vector2d _position;
 
+    public float ActiveDistace
+    {
+        get
+        {
+            return activDistace;
+        }
+        set
+        {
+            if (value != activDistace)
+            {
+                activDistace = value;
+            }
+        }
+    }
 
     public void OnObjectClick()
     {
@@ -17,7 +32,7 @@ public class EvenPoint : MonoBehaviour
         var eventLoc = new GeoCoordinatePortable.GeoCoordinate(_position[0], _position[1]);
         var distance = currentPlayerLoc.GetDistanceTo(eventLoc);
         Debug.Log($"{distance}");
-        if (distance <= 30)
+        if (distance <= activDistace)
         {
             gameObject.SetActive(false);
         }
