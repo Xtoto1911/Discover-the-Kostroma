@@ -1,20 +1,18 @@
-using Mapbox.Examples;
+using Mapbox.Unity.Map;
 using Mapbox.Unity.Utilities;
+using Mapbox.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mapbox.Utils;
-using Mapbox.Unity.Map;
 using Mapbox.Unity.MeshGeneration.Factories;
-using System;
 using System.IO;
 
-public class PoolMissedEvent
+public class PoolFog
 {
     string[] _locationStrings;
-    string _path;
 
-    public string[] LoketionStrings {
+    public string[] LoketionStrings
+    {
         set
         {
             if (value != null)
@@ -23,49 +21,34 @@ public class PoolMissedEvent
                 Save();
             }
         }
-        get { return _locationStrings; } 
+        get { return _locationStrings; }
     }
 
-    public string PathFroJson
+    public PoolFog()
     {
-        get
-        {
-            return _path;
-        }
-        set
-        {
-            if(value != null)
-                _path = value;
-        }
-    }
-
-    public PoolMissedEvent(String path)
-    {
-        PathFroJson = path;
+        Load();
     }
 
     public void Save()
     {
         StringArrayWrapper wrapper = new StringArrayWrapper { array = _locationStrings };
         string jsonData = JsonUtility.ToJson(wrapper);
-        string filePath = Path.Combine(Application.persistentDataPath, PathFroJson);
+        string filePath = Path.Combine(Application.persistentDataPath, "locationFog.json");
 
         File.WriteAllText(filePath, jsonData);
         Debug.Log($"Вроде сохранил({filePath})");
     }
 
-    public bool Load(String path)
+    public void Load()
     {
-        string filePath = Path.Combine(Application.persistentDataPath, PathFroJson);
+        string filePath = Path.Combine(Application.persistentDataPath, "locationFog.json");
 
         if (File.Exists(filePath))
         {
             string jsonData = File.ReadAllText(filePath);
             StringArrayWrapper wrapper = JsonUtility.FromJson<StringArrayWrapper>(jsonData);
             _locationStrings = wrapper.array;
-            Debug.Log("Старый список");
-            return true;
+            Debug.Log("Старый список(Fog)");
         }
-        return false;
     }
 }
