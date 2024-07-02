@@ -1632,7 +1632,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 338747593}
-  - component: {fileID: 338747592}
+  - component: {fileID: 338747594}
   m_Layer: 0
   m_Name: -SpawFog
   m_TagString: Untagged
@@ -1640,22 +1640,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &338747592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 338747591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcf32ea2cc0514b569329f6b6b68f9b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _map: {fileID: 1787700008}
-  _locationStrings: []
-  _spawnScale: 5
-  _markerPrefab: {fileID: 5276258346820293777, guid: acc5a6d26d67c684794dc62e7662c7e5, type: 3}
 --- !u!4 &338747593
 Transform:
   m_ObjectHideFlags: 0
@@ -1671,6 +1655,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &338747594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338747591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6664a9948049b5849830be68b7fb2aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 1787700008}
+  _locationStrings: []
+  _spawnScale: 1
+  _markerPrefab: {fileID: 5276258346820293777, guid: acc5a6d26d67c684794dc62e7662c7e5, type: 3}
+  _rectanglePrefab: {fileID: 8164402251816540447, guid: 0d8ffcdcadb228d4585dc8afff9e1c52, type: 3}
 --- !u!1 &367130806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,7 +1702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1891566183}
-  distance: 100
+  distance: 120
   height: 100
   damping: 2
 --- !u!4 &367130808
@@ -4628,6 +4629,8 @@ GameObject:
   - component: {fileID: 1400164390}
   - component: {fileID: 1400164389}
   - component: {fileID: 1400164388}
+  - component: {fileID: 1400164392}
+  - component: {fileID: 1400164393}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4717,6 +4720,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 367130808}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!114 &1400164392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400164387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80dffeb3d9e4b3641b9823d770635a60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1400164390}
+--- !u!114 &1400164393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400164387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 1
 --- !u!1001 &1407488420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4725,6 +4757,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1638059881744458, guid: 35ce2bb4caba9434db5e656796b632b1, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4886150424162858, guid: 35ce2bb4caba9434db5e656796b632b1, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4839,11 +4875,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114658503893516242, guid: 35ce2bb4caba9434db5e656796b632b1, type: 3}
       propertyPath: _latitudeLongitude.Array.data[0]
-      value: 57.75567198767801, 40.9433839770845
+      value: 57.761517723854084, 40.928829577435096
       objectReference: {fileID: 0}
     - target: {fileID: 114658503893516242, guid: 35ce2bb4caba9434db5e656796b632b1, type: 3}
       propertyPath: _latitudeLongitude.Array.data[1]
-      value: 57.756551140235075, 40.944505897770604
+      value: 57.761736011363446, 40.928772743418456
       objectReference: {fileID: 0}
     - target: {fileID: 114658503893516242, guid: 35ce2bb4caba9434db5e656796b632b1, type: 3}
       propertyPath: _latitudeLongitude.Array.data[2]
@@ -6804,7 +6840,7 @@ SceneRoots:
   - {fileID: 367130808}
   - {fileID: 1274479886}
   - {fileID: 1407488420}
-  - {fileID: 905437853}
   - {fileID: 648879046}
   - {fileID: 731915766}
   - {fileID: 338747593}
+  - {fileID: 905437853}
