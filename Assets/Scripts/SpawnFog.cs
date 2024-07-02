@@ -11,7 +11,6 @@ public class SpawnFog : MonoBehaviour
     [SerializeField]
     AbstractMap _map;
 
-    [SerializeField]
     [Geocode]
     string[] _locationStrings;
     Vector2d[] _locations;
@@ -32,18 +31,14 @@ public class SpawnFog : MonoBehaviour
 
     [SerializeField] private string SavePath;
 
+    [SerializeField] string[] defArr;
+
     void Start()
     {
         _poolMissedEvent = new PoolMissedEvent(SavePath);
         if (!_poolMissedEvent.Load(SavePath))
         {
-            _poolMissedEvent.LoketionStrings = new string[]
-            {
-                "57.76161132518358, 40.92810356225015",
-                "57.7706249013583, 40.91697769417456",
-                "57.77370549989365, 40.93985385717708",
-                "57.76572578507874, 40.94240616160308"
-            };
+            _poolMissedEvent.LoketionStrings = defArr;
             Debug.Log("Новый список");
         }
         _locationStrings = _poolMissedEvent.LoketionStrings;
