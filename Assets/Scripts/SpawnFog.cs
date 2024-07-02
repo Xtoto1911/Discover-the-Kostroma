@@ -6,8 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mapbox.Unity.MeshGeneration.Factories;
 
-
-public class SpavnOnMapPointInInterest : MonoBehaviour
+public class SpawnFog : MonoBehaviour
 {
     [SerializeField]
     AbstractMap _map;
@@ -27,6 +26,10 @@ public class SpavnOnMapPointInInterest : MonoBehaviour
 
     private PoolMissedEvent _poolMissedEvent;
 
+    [SerializeField] private GameObject _rectanglePrefab;
+
+    private bool flag = false;
+
     [SerializeField] private string SavePath;
 
     void Start()
@@ -36,14 +39,10 @@ public class SpavnOnMapPointInInterest : MonoBehaviour
         {
             _poolMissedEvent.LoketionStrings = new string[]
             {
-                "57.768520055575486, 40.92599575087467",//Каланча
-                "57.76697615890837, 40.92477886355354",//Сусанин
-                "57.76729913262451, 40.92766853590996",//Снегурочка
-                "57.76657623559337, 40.9293277628552",//Юрий Долгорукий
-                "57.77023610885775, 40.93150122896323",//Драм.театра Н.Островского
-                "57.77261425824748, 40.93944449575506",//Монумент Славы
-                "57.770261746665504, 40.91809192389704",//Место основания
-                "57.76172212278889, 40.92876323614582"//Беседка Островского
+                "57.76161132518358, 40.92810356225015",
+                "57.7706249013583, 40.91697769417456",
+                "57.77370549989365, 40.93985385717708",
+                "57.76572578507874, 40.94240616160308"
             };
             Debug.Log("Новый список");
         }
@@ -62,6 +61,8 @@ public class SpavnOnMapPointInInterest : MonoBehaviour
         }
     }
 
+   
+
     private void Update()
     {
         int count = _spawnedObjects.Count;
@@ -71,6 +72,22 @@ public class SpavnOnMapPointInInterest : MonoBehaviour
             var location = _locations[i];
             spawnedObject.transform.localPosition = _map.GeoToWorldPosition(location, true);
             spawnedObject.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
+        }
+        if (!flag && _spawnedObjects[0].transform.position != new Vector3(0, 5.14f, 0))
+        {
+            GameObject rectangleInstance = Instantiate(_rectanglePrefab, transform);
+            Vector3 minPoint = _spawnedObjects[0].transform.localPosition;
+            Vector3 maxPoint = _spawnedObjects[0].transform.localPosition;
+            foreach (var obj in _spawnedObjects)
+            {
+                minPoint = Vector3.Min(minPoint, obj.transform.localPosition);
+                maxPoint = Vector3.Max(maxPoint, obj.transform.localPosition);
+            }
+            Vector3 center = (minPoint + maxPoint) / 2f;
+            Vector3 size = maxPoint - minPoint;
+            rectangleInstance.transform.position = new Vector3(center.x,center.y + 15,center.z);
+            rectangleInstance.transform.localScale = new Vector3(size.x, 400f, size.z);
+            flag = true;
         }
     }
 }
