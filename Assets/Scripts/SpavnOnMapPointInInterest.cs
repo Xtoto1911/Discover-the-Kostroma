@@ -30,6 +30,8 @@ public class SpavnOnMapPointInInterest : MonoBehaviour
 
     [SerializeField] string[] defArr;
 
+    [SerializeField] float clickDistance;
+
     void Start()
     {
         _poolMissedEvent = new PoolMissedEvent(SavePath);
@@ -47,6 +49,7 @@ public class SpavnOnMapPointInInterest : MonoBehaviour
             _locations[i] = Conversions.StringToLatLon(locationString);
             var instance = Instantiate(_markerPrefab, transform);
             instance.GetComponent<EvenPoint>()._position = _locations[i];
+            instance.GetComponent<EvenPoint>().ActiveDistace = clickDistance;
             instance.transform.localPosition = _map.GeoToWorldPosition(_locations[i], true);
             instance.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
             _spawnedObjects.Add(instance);

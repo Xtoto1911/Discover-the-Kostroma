@@ -1844,6 +1844,7 @@ MonoBehaviour:
   - 57.7706249013583, 40.91697769417456
   - 57.77370549989365, 40.93985385717708
   - 57.76572578507874, 40.94240616160308
+  clickDistance: 70
 --- !u!1 &361447172
 GameObject:
   m_ObjectHideFlags: 0
@@ -3019,6 +3020,7 @@ MonoBehaviour:
   - 57.77261425824748, 40.93944449575506
   - 57.770261746665504, 40.91809192389704
   - 57.76172212278889, 40.92876323614582
+  clickDistance: 70
 --- !u!1 &761882791
 GameObject:
   m_ObjectHideFlags: 0
@@ -6417,7 +6419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114658503893516242, guid: 35ce2bb4caba9434db5e656796b632b1, type: 3}
       propertyPath: _latitudeLongitude.Array.data[0]
-      value: 57.761517723854084, 40.928829577435096
+      value: 57.761187298178356, 40.928744649696036
       objectReference: {fileID: 0}
     - target: {fileID: 114658503893516242, guid: 35ce2bb4caba9434db5e656796b632b1, type: 3}
       propertyPath: _latitudeLongitude.Array.data[1]

@@ -15,9 +15,7 @@ public class MoveCamera : MonoBehaviour
     void LateUpdate()
     {
         Vector3 targetPosition = target.position + new Vector3(0, height, -distance);
-
         transform.position = Vector3.Lerp(transform.position, targetPosition, damping * Time.deltaTime);
-
         transform.LookAt(target);
     }
 }
