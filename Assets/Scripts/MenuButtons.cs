@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; // Добавляем пространство имен для работы со сценами
+using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
@@ -20,30 +20,41 @@ public class Buttons : MonoBehaviour
     public Button AchievBtn;
     public Button ShopBtn;
     public Button SettingBtn;
-    public Button BackBtn;
-    public Button CentalBtn;
+    public Button MainBtn;
+    public Button CentralBtn;
     public Button FabrichBtn;
     public Button ZavoljskBtn;
     public Button ExitBtn;
     public Button BuyBtn;
 
     private Vector2 menuBtnOriginalPosition;
-    private Vector2[] buttonOffsets = new Vector2[]
+    private Vector2[] buttonOffsetsVertical = new Vector2[]
     {
-        new Vector2(-30, 400),  // Offset for AreasBtn
-        new Vector2(150, 300), // Offset for AchievBtn
-        new Vector2(300, 150), // Offset for ShopBtn
-        new Vector2(400, -30)  // Offset for SettingBtn
+        new Vector2(0, 800),  // Main
+        new Vector2(0, 640), // Areas
+        new Vector2(0, 480), // Acviev
+        new Vector2(0, 320),  // Shop
+        new Vector2(0, 160)  // Settings
+    };
+
+    private Vector2[] buttonOffsetsHorizontal = new Vector2[]
+    {
+        new Vector2(800, 0),  // Main
+        new Vector2(640, 0), // Areas
+        new Vector2(480, 0), // Acviev
+        new Vector2(320, 0),  // Shop
+        new Vector2(160, 0)  // Settings
     };
 
     private RectTransform[] buttonTransforms;
     private bool isMenuExpanded = false;
-    private float animationDuration = 0.2f; // Duration of the animation
+    private float animationDuration = 0.2f;
 
     void Start()
     {
         buttonTransforms = new RectTransform[]
         {
+            MainBtn.GetComponent<RectTransform>(),
             AreasBtn.GetComponent<RectTransform>(),
             AchievBtn.GetComponent<RectTransform>(),
             ShopBtn.GetComponent<RectTransform>(),
@@ -53,13 +64,13 @@ public class Buttons : MonoBehaviour
         menuBtnOriginalPosition = MenuBtn.GetComponent<RectTransform>().anchoredPosition;
 
         MenuBtn.onClick.AddListener(() => ToggleMenu());
+        MainBtn.onClick.AddListener(() => OnMenuButtonClick(MainScreen));
         AreasBtn.onClick.AddListener(() => OnMenuButtonClick(AreaSelectingScreen));
         AchievBtn.onClick.AddListener(() => OnMenuButtonClick(AchievementsScreen));
         ShopBtn.onClick.AddListener(() => OnMenuButtonClick(ShopScreen));
         SettingBtn.onClick.AddListener(() => OnMenuButtonClick(SettingsScreen));
-        BackBtn.onClick.AddListener(() => OnBackButtonClick());
 
-        CentalBtn.onClick.AddListener(() => OnCentalButtonClick());
+        CentralBtn.onClick.AddListener(() => OnCentralButtonClick());
         FabrichBtn.onClick.AddListener(() => OnCityButtonClick());
         ZavoljskBtn.onClick.AddListener(() => OnCityButtonClick());
         ExitBtn.onClick.AddListener(() => OnExitButtonClick());
@@ -74,21 +85,37 @@ public class Buttons : MonoBehaviour
     {
         isMenuExpanded = !isMenuExpanded;
 
+        Vector2[] buttonOffsets = Screen.orientation == ScreenOrientation.Portrait ? buttonOffsetsVertical : buttonOffsetsHorizontal;
+
         for (int i = 0; i < buttonTransforms.Length; i++)
         {
-            if (isMenuExpanded)
+            if (buttonTransforms[i] == null)
             {
-                StartCoroutine(MoveButton(buttonTransforms[i], menuBtnOriginalPosition + buttonOffsets[i]));
+                Debug.LogWarning("Button transform is null at index: " + i);
+                continue;
+            }
+
+            if (i < buttonOffsets.Length) // Check if index is within bounds
+            {
+                if (isMenuExpanded)
+                {
+                    StartCoroutine(MoveButton(buttonTransforms[i], menuBtnOriginalPosition + buttonOffsets[i]));
+                    buttonTransforms[i].gameObject.SetActive(true); // Ensure buttons are visible when menu expands
+                }
+                else
+                {
+                    int index = i; // Capturing index for the closure
+                    StartCoroutine(MoveButton(buttonTransforms[i], menuBtnOriginalPosition, () => buttonTransforms[index].gameObject.SetActive(false)));
+                }
             }
             else
             {
-                StartCoroutine(MoveButton(buttonTransforms[i], menuBtnOriginalPosition));
+                Debug.LogWarning("Index out of range: buttonOffsets array is smaller than buttonTransforms array.");
             }
-            buttonTransforms[i].gameObject.SetActive(true);
         }
     }
 
-    IEnumerator MoveButton(RectTransform buttonTransform, Vector2 targetPosition)
+    IEnumerator MoveButton(RectTransform buttonTransform, Vector2 targetPosition, System.Action onComplete = null)
     {
         Vector2 startPosition = buttonTransform.anchoredPosition;
         float elapsedTime = 0f;
@@ -101,18 +128,13 @@ public class Buttons : MonoBehaviour
         }
 
         buttonTransform.anchoredPosition = targetPosition;
-
-        if (!isMenuExpanded)
-        {
-            buttonTransform.gameObject.SetActive(false);
-        }
+        onComplete?.Invoke();
     }
 
     void OnMenuButtonClick(GameObject screenToShow)
     {
         ShowScreen(screenToShow);
-        HideAllButtons();
-        BackBtn.gameObject.SetActive(true);
+        // Do not hide buttons here, they should remain visible
     }
 
     void OnCityButtonClick()
@@ -129,18 +151,6 @@ public class Buttons : MonoBehaviour
         TestBtn.SetActive(true);
     }
 
-    void OnBackButtonClick()
-    {
-        ShowScreen(MainScreen);
-        MenuBtn.gameObject.SetActive(true);
-        BackBtn.gameObject.SetActive(false);
-        ResetMenuButtons();
-        // Ensure BuyingPanel is hidden and VerticalScroll and TestBtn are visible
-        BuyingPanel.SetActive(false);
-        VerticalScroll.SetActive(true);
-        TestBtn.SetActive(true);
-    }
-
     void OnBuyButtonClick()
     {
         // Placeholder for Buy button functionality
@@ -152,7 +162,7 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene("test");
     }
 
-    void OnCentalButtonClick()
+    void OnCentralButtonClick()
     {
         SceneManager.LoadScene("SampleScene");
     }
@@ -168,10 +178,12 @@ public class Buttons : MonoBehaviour
 
     void HideAllButtons()
     {
-        MenuBtn.gameObject.SetActive(false);
         for (int i = 0; i < buttonTransforms.Length; i++)
         {
-            buttonTransforms[i].gameObject.SetActive(false);
+            if (buttonTransforms[i] != null)
+            {
+                buttonTransforms[i].gameObject.SetActive(false);
+            }
         }
     }
 
@@ -180,8 +192,11 @@ public class Buttons : MonoBehaviour
         isMenuExpanded = false; // Reset the menu expanded state
         for (int i = 0; i < buttonTransforms.Length; i++)
         {
-            buttonTransforms[i].anchoredPosition = menuBtnOriginalPosition; // Reset button positions
-            buttonTransforms[i].gameObject.SetActive(false); // Ensure buttons are hidden
+            if (buttonTransforms[i] != null)
+            {
+                buttonTransforms[i].anchoredPosition = menuBtnOriginalPosition; // Reset button positions
+                buttonTransforms[i].gameObject.SetActive(false); // Ensure buttons are hidden
+            }
         }
     }
 }
