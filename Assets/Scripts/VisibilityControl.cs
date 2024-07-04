@@ -13,9 +13,9 @@ public class VisibilityControl : MonoBehaviour
     public GameObject ShopScreen;
     public GameObject AreaSelectingScreen;
     public GameObject VerticalScroll;
-    public GameObject TestBtn;
     public GameObject BuyingPanel;
 
+    public Button TestBtn;
     public Button MenuBtn;
     public Button AreasBtn;
     public Button AchievBtn;
@@ -75,12 +75,12 @@ public class VisibilityControl : MonoBehaviour
         SettingBtn.onClick.AddListener(() => OnMenuButtonClick(SettingsScreen));
 
         CentralBtn.onClick.AddListener(() => OnCentralButtonClick());
-        FabrichBtn.onClick.AddListener(() => OnFabrichnyyButtonClick());
-        ZavoljskBtn.onClick.AddListener(() => OnZavolzhskyButtonClick());
+        FabrichBtn.onClick.AddListener(() => OnCityButtonClick());
+        ZavoljskBtn.onClick.AddListener(() => OnCityButtonClick());
+        TestBtn.onClick.AddListener(() => OnTestButtonClick());
+
         ExitBtn.onClick.AddListener(() => OnExitButtonClick());
         BuyBtn.onClick.AddListener(() => OnBuyButtonClick());
-
-        TestBtn.GetComponent<Button>().onClick.AddListener(() => OnTestButtonClick());
 
         BuyingPanel.SetActive(false); // Ensure BuyingPanel is hidden at the start
     }
@@ -143,7 +143,7 @@ public class VisibilityControl : MonoBehaviour
     void OnCityButtonClick()
     {
         VerticalScroll.SetActive(false);
-        TestBtn.SetActive(false);
+        TestBtn.gameObject.SetActive(false);
         HideMenuButtons();
         BuyingPanel.SetActive(true);
     }
@@ -152,7 +152,7 @@ public class VisibilityControl : MonoBehaviour
     {
         BuyingPanel.SetActive(false);
         VerticalScroll.SetActive(true);
-        TestBtn.SetActive(true);
+        TestBtn.gameObject.SetActive(true);
         ShowMenuButtons();
     }
 
