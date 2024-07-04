@@ -75,8 +75,8 @@ public class VisibilityControl : MonoBehaviour
         SettingBtn.onClick.AddListener(() => OnMenuButtonClick(SettingsScreen));
 
         CentralBtn.onClick.AddListener(() => OnCentralButtonClick());
-        FabrichBtn.onClick.AddListener(() => OnCityButtonClick());
-        ZavoljskBtn.onClick.AddListener(() => OnCityButtonClick());
+        FabrichBtn.onClick.AddListener(() => OnFabrichnyyButtonClick());
+        ZavoljskBtn.onClick.AddListener(() => OnZavolzhskyButtonClick());
         ExitBtn.onClick.AddListener(() => OnExitButtonClick());
         BuyBtn.onClick.AddListener(() => OnBuyButtonClick());
 
@@ -158,19 +158,27 @@ public class VisibilityControl : MonoBehaviour
 
     void OnBuyButtonClick()
     {
-        // Placeholder for Buy button functionality
         Debug.Log("Buy button clicked");
-    }
-
-    void OnTestButtonClick()
-    {
-        Debug.Log("Test button clicked");
-        SceneManager.LoadScene("test");
     }
 
     void OnCentralButtonClick()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("TsentralnyyScene");
+    }
+
+    void OnFabrichnyyButtonClick()
+    {
+        SceneManager.LoadScene("FabrichnyyScene");
+    }
+
+    void OnZavolzhskyButtonClick()
+    {
+        SceneManager.LoadScene("ZavolzhskyScene");
+    }
+
+    void OnTestButtonClick()
+    {
+        SceneManager.LoadScene("test");
     }
 
     void ShowScreen(GameObject screenToShow)
@@ -210,6 +218,15 @@ public class VisibilityControl : MonoBehaviour
                 buttonTransforms[i].anchoredPosition = menuBtnOriginalPosition; // Reset button positions
                 buttonTransforms[i].gameObject.SetActive(false); // Ensure buttons are hidden
             }
+        }
+    }
+
+    // This method is called whenever the RectTransform's dimensions change (including screen orientation change)
+    void OnRectTransformDimensionsChange()
+    {
+        if (isMenuExpanded)
+        {
+            ToggleMenu(); // Collapse the menu
         }
     }
 }
