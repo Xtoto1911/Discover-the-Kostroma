@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Buttons : MonoBehaviour
+public class VisibilityControl : MonoBehaviour
 {
+    // UI Elements
     public GameObject MainScreen;
     public GameObject AchievementsScreen;
     public GameObject SettingsScreen;
@@ -32,7 +33,7 @@ public class Buttons : MonoBehaviour
     {
         new Vector2(0, 800),  // Main
         new Vector2(0, 640), // Areas
-        new Vector2(0, 480), // Acviev
+        new Vector2(0, 480), // Achiev
         new Vector2(0, 320),  // Shop
         new Vector2(0, 160)  // Settings
     };
@@ -41,7 +42,7 @@ public class Buttons : MonoBehaviour
     {
         new Vector2(800, 0),  // Main
         new Vector2(640, 0), // Areas
-        new Vector2(480, 0), // Acviev
+        new Vector2(480, 0), // Achiev
         new Vector2(320, 0),  // Shop
         new Vector2(160, 0)  // Settings
     };
@@ -52,6 +53,7 @@ public class Buttons : MonoBehaviour
 
     void Start()
     {
+        // Initialize button transforms
         buttonTransforms = new RectTransform[]
         {
             MainBtn.GetComponent<RectTransform>(),
@@ -61,8 +63,10 @@ public class Buttons : MonoBehaviour
             SettingBtn.GetComponent<RectTransform>()
         };
 
+        // Store original position of the MenuBtn
         menuBtnOriginalPosition = MenuBtn.GetComponent<RectTransform>().anchoredPosition;
 
+        // Set up button listeners
         MenuBtn.onClick.AddListener(() => ToggleMenu());
         MainBtn.onClick.AddListener(() => OnMenuButtonClick(MainScreen));
         AreasBtn.onClick.AddListener(() => OnMenuButtonClick(AreaSelectingScreen));
@@ -71,8 +75,8 @@ public class Buttons : MonoBehaviour
         SettingBtn.onClick.AddListener(() => OnMenuButtonClick(SettingsScreen));
 
         CentralBtn.onClick.AddListener(() => OnCentralButtonClick());
-        FabrichBtn.onClick.AddListener(() => OnCityButtonClick());
-        ZavoljskBtn.onClick.AddListener(() => OnCityButtonClick());
+        FabrichBtn.onClick.AddListener(() => OnFabrichnyyButtonClick());
+        ZavoljskBtn.onClick.AddListener(() => OnZavolzhskyButtonClick());
         ExitBtn.onClick.AddListener(() => OnExitButtonClick());
         BuyBtn.onClick.AddListener(() => OnBuyButtonClick());
 
@@ -134,13 +138,13 @@ public class Buttons : MonoBehaviour
     void OnMenuButtonClick(GameObject screenToShow)
     {
         ShowScreen(screenToShow);
-        // Do not hide buttons here, they should remain visible
     }
 
     void OnCityButtonClick()
     {
         VerticalScroll.SetActive(false);
         TestBtn.SetActive(false);
+        HideMenuButtons();
         BuyingPanel.SetActive(true);
     }
 
@@ -149,22 +153,32 @@ public class Buttons : MonoBehaviour
         BuyingPanel.SetActive(false);
         VerticalScroll.SetActive(true);
         TestBtn.SetActive(true);
+        ShowMenuButtons();
     }
 
     void OnBuyButtonClick()
     {
-        // Placeholder for Buy button functionality
         Debug.Log("Buy button clicked");
+    }
+
+    void OnCentralButtonClick()
+    {
+        SceneManager.LoadScene("TsentralnyyScene");
+    }
+
+    void OnFabrichnyyButtonClick()
+    {
+        SceneManager.LoadScene("FabrichnyyScene");
+    }
+
+    void OnZavolzhskyButtonClick()
+    {
+        SceneManager.LoadScene("ZavolzhskyScene");
     }
 
     void OnTestButtonClick()
     {
         SceneManager.LoadScene("test");
-    }
-
-    void OnCentralButtonClick()
-    {
-        SceneManager.LoadScene("SampleScene");
     }
 
     void ShowScreen(GameObject screenToShow)
@@ -176,14 +190,21 @@ public class Buttons : MonoBehaviour
         AreaSelectingScreen.SetActive(screenToShow == AreaSelectingScreen);
     }
 
-    void HideAllButtons()
+    void HideMenuButtons()
     {
-        for (int i = 0; i < buttonTransforms.Length; i++)
+        MenuBtn.gameObject.SetActive(false);
+        foreach (RectTransform btnTransform in buttonTransforms)
         {
-            if (buttonTransforms[i] != null)
-            {
-                buttonTransforms[i].gameObject.SetActive(false);
-            }
+            btnTransform.gameObject.SetActive(false);
+        }
+    }
+
+    void ShowMenuButtons()
+    {
+        MenuBtn.gameObject.SetActive(true);
+        foreach (RectTransform btnTransform in buttonTransforms)
+        {
+            btnTransform.gameObject.SetActive(true);
         }
     }
 
@@ -197,6 +218,15 @@ public class Buttons : MonoBehaviour
                 buttonTransforms[i].anchoredPosition = menuBtnOriginalPosition; // Reset button positions
                 buttonTransforms[i].gameObject.SetActive(false); // Ensure buttons are hidden
             }
+        }
+    }
+
+    // This method is called whenever the RectTransform's dimensions change (including screen orientation change)
+    void OnRectTransformDimensionsChange()
+    {
+        if (isMenuExpanded)
+        {
+            ToggleMenu(); // Collapse the menu
         }
     }
 }

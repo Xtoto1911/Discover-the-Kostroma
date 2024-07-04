@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/TsentralnyyScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/test.unity
     guid: c49f20f0be6890a4e8bfadce7a4b6670
+  - enabled: 1
+    path: Assets/Scenes/FabrichnyyScene.unity
+    guid: 70ffa0a830b6be84e8f38914b143fab1
+  - enabled: 1
+    path: Assets/Scenes/ZavolzhskyScene.unity
+    guid: f60427d41c23e544aa5f80b9840a5202
   m_configObjects: {}
