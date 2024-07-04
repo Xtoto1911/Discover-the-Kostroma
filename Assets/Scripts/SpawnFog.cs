@@ -35,6 +35,16 @@ public class SpawnFog : MonoBehaviour
 
     [SerializeField] float clickDistance;
 
+    [SerializeField] GameObject spantQues;
+
+    private GameObject fog;
+
+    public GameObject Fog
+    {
+        private set => fog = value;
+        get => fog;
+    }
+
     void Start()
     {
         _poolMissedEvent = new PoolMissedEvent(SavePath);
@@ -51,8 +61,10 @@ public class SpawnFog : MonoBehaviour
             var locationString = _locationStrings[i];
             _locations[i] = Conversions.StringToLatLon(locationString);
             var instance = Instantiate(_markerPrefab, transform);
-            instance.GetComponent<EvenPoint>()._position = _locations[i];
-            instance.GetComponent<EvenPoint>().ActiveDistace = clickDistance;
+            instance.GetComponent<EventFoinFog>()._position = _locations[i];
+            instance.GetComponent<EventFoinFog>().ActiveDistace = clickDistance;
+            instance.GetComponent<EventFoinFog>().Spavner = gameObject;
+            instance.GetComponent<EventFoinFog>().SpavnewQuestions = spantQues;
             instance.transform.localPosition = _map.GeoToWorldPosition(_locations[i], true);
             instance.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
             _spawnedObjects.Add(instance);
@@ -68,13 +80,16 @@ public class SpawnFog : MonoBehaviour
         {
             var spawnedObject = _spawnedObjects[i];
             var location = _locations[i];
-            _spawnedObjects[i].SetActive(false);
+            if (spawnedObject != _spawnedObjects[count - 1])
+            {
+                _spawnedObjects[i].SetActive(false);
+            }
             spawnedObject.transform.localPosition = _map.GeoToWorldPosition(location, true);
             spawnedObject.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
         }
         if (!flag && count > 0 && _spawnedObjects[0].transform.position != new Vector3(0, 5.14f, 0))
         {
-            GameObject rectangleInstance = Instantiate(_rectanglePrefab, transform);
+            fog = Instantiate(_rectanglePrefab, transform);
             Vector3 minPoint = _spawnedObjects[0].transform.localPosition;
             Vector3 maxPoint = _spawnedObjects[0].transform.localPosition;
             foreach (var obj in _spawnedObjects)
@@ -84,8 +99,8 @@ public class SpawnFog : MonoBehaviour
             }
             Vector3 center = (minPoint + maxPoint) / 2f;
             Vector3 size = maxPoint - minPoint;
-            rectangleInstance.transform.position = new Vector3(center.x,center.y + 5,center.z);
-            rectangleInstance.transform.localScale = new Vector3(size.x, size.x - size.x % 20, size.z);
+            fog.transform.position = new Vector3(center.x,center.y + 5,center.z);
+            fog.transform.localScale = new Vector3(size.x, size.x - size.x % 20, size.z);
             flag = true;
         }
     }

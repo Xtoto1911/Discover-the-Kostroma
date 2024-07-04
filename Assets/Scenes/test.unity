@@ -1038,17 +1038,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 229300258}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1874077221}
   m_Father: {fileID: 1577757061}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100, y: -200}
+  m_AnchoredPosition: {x: -150, y: -700}
   m_SizeDelta: {x: 50, y: 500}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &229300260
@@ -1078,7 +1078,7 @@ MonoBehaviour:
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 10
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -1094,9 +1094,9 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 772948577}
   m_HandleRect: {fileID: 772948576}
   m_Direction: 3
-  m_Value: 0
-  m_Size: 0.2
-  m_NumberOfSteps: 0
+  m_Value: 1
+  m_Size: 0.1
+  m_NumberOfSteps: 11
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1581,6 +1581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 338747593}
   - component: {fileID: 338747594}
+  - component: {fileID: 338747595}
   m_Layer: 0
   m_Name: -SpawFog
   m_TagString: Untagged
@@ -1616,8 +1617,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 1787700008}
-  _spawnScale: 1
-  _markerPrefab: {fileID: 5276258346820293777, guid: acc5a6d26d67c684794dc62e7662c7e5, type: 3}
+  _spawnScale: 5
+  _markerPrefab: {fileID: 5276258346820293777, guid: 7c4e84ccdb952034fb3acd51447d7c39, type: 3}
   _rectanglePrefab: {fileID: 8164402251816540447, guid: 0d8ffcdcadb228d4585dc8afff9e1c52, type: 3}
   SavePath: FogTest.json
   defArr:
@@ -1625,7 +1626,25 @@ MonoBehaviour:
   - 57.73679760506654, 40.91867887907911
   - 57.73576697866771, 40.92082607689424
   - 57.73634971963204, 40.921836522924885
+  - 57.736018595818734, 40.92097609659555
   clickDistance: 100
+  spantQues: {fileID: 731915764}
+--- !u!114 &338747595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338747591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411a25afdbde52a4aafd9fb2563d2bbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activDistace: 0
+  _position:
+    x: 0
+    y: 0
 --- !u!1 &367130806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,6 +1675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1891566183}
+  scrollbar: {fileID: 229300260}
   distance: 120
   height: 100
   damping: 2
@@ -2778,7 +2798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &731915766
 Transform:
   m_ObjectHideFlags: 0
