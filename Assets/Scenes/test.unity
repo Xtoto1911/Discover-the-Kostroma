@@ -1646,8 +1646,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 1787700008}
-  _spawnScale: 1
-  _markerPrefab: {fileID: 5276258346820293777, guid: acc5a6d26d67c684794dc62e7662c7e5, type: 3}
+  _spawnScale: 5
+  _markerPrefab: {fileID: 5276258346820293777, guid: 7c4e84ccdb952034fb3acd51447d7c39, type: 3}
   _rectanglePrefab: {fileID: 8164402251816540447, guid: 0d8ffcdcadb228d4585dc8afff9e1c52, type: 3}
   SavePath: FogTest.json
   defArr:
@@ -1655,7 +1655,9 @@ MonoBehaviour:
   - 57.73679760506654, 40.91867887907911
   - 57.73576697866771, 40.92082607689424
   - 57.73634971963204, 40.921836522924885
+  - 57.735946429888116, 40.92074379425033
   clickDistance: 100
+  spantQues: {fileID: 731915764}
 --- !u!1 &355051241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,6 +1822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1891566183}
+  scrollbar: {fileID: 1745390858}
   distance: 120
   height: 100
   damping: 2
@@ -3031,7 +3034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &731915766
 Transform:
   m_ObjectHideFlags: 0
@@ -7597,9 +7600,9 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 125594232}
   m_HandleRect: {fileID: 125594231}
   m_Direction: 3
-  m_Value: 0
-  m_Size: 0.2
-  m_NumberOfSteps: 0
+  m_Value: 1
+  m_Size: 0.1
+  m_NumberOfSteps: 11
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
