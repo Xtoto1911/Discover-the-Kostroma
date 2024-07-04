@@ -2076,7 +2076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1891566183}
-  scrollbar: {fileID: 0}
+  scrollbar: {fileID: 459793573}
   distance: 120
   height: 100
   damping: 2
