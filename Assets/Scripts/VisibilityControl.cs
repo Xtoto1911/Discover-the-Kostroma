@@ -27,6 +27,7 @@ public class VisibilityControl : MonoBehaviour
     public Button ZavoljskBtn;
     public Button ExitBtn;
     public Button BuyBtn;
+    public Button FirstAchievBtn;
 
     private Vector2 menuBtnOriginalPosition;
     private Vector2[] buttonOffsetsVertical = new Vector2[]
@@ -73,6 +74,7 @@ public class VisibilityControl : MonoBehaviour
         AchievBtn.onClick.AddListener(() => OnMenuButtonClick(AchievementsScreen));
         ShopBtn.onClick.AddListener(() => OnMenuButtonClick(ShopScreen));
         SettingBtn.onClick.AddListener(() => OnMenuButtonClick(SettingsScreen));
+        FirstAchievBtn.onClick.AddListener(() => OnFirstAchievButtonClick());
 
         CentralBtn.onClick.AddListener(() => OnCentralButtonClick());
         FabrichBtn.onClick.AddListener(() => OnCityButtonClick());
@@ -174,6 +176,11 @@ public class VisibilityControl : MonoBehaviour
     void OnZavolzhskyButtonClick()
     {
         SceneManager.LoadScene("ZavolzhskyScene");
+    }
+
+    void OnFirstAchievButtonClick()
+    {
+        SceneManager.LoadScene("SceneForAchievments");
     }
 
     void OnTestButtonClick()

@@ -11,10 +11,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/test.unity
     guid: c49f20f0be6890a4e8bfadce7a4b6670
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FabrichnyyScene.unity
     guid: 70ffa0a830b6be84e8f38914b143fab1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ZavolzhskyScene.unity
     guid: f60427d41c23e544aa5f80b9840a5202
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/SceneForAchievments.unity
+    guid: 8e6a13c5c05b50541bfbe172c67e8356
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 191980317e6f808418a7fe27d18fdf02, type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: e48f249bbcdbcc6458f75c62ce9d2bc1, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 030652e4ffc17b8479dc2540a6c1e114, type: 2}
+    com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 29dcdbf9585885944af2915d4acb2ba0, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 422f2a16ba2856b4d9bf3003a57a5d85, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: e3d4851f58435ca49b9bd9df2e0acde0, type: 2}

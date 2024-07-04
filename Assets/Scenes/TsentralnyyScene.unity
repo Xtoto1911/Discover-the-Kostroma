@@ -7379,6 +7379,7 @@ MonoBehaviour:
   ZavoljskBtn: {fileID: 1145737122}
   ExitBtn: {fileID: 525362399}
   BuyBtn: {fileID: 1035633364}
+  FirstAchievBtn: {fileID: 533391830}
 --- !u!1 &1283100492
 GameObject:
   m_ObjectHideFlags: 0
