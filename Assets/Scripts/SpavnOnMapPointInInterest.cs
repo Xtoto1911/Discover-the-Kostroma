@@ -50,6 +50,7 @@ public class SpavnOnMapPointInInterest : MonoBehaviour
             var instance = Instantiate(_markerPrefab, transform);
             instance.GetComponent<EvenPoint>()._position = _locations[i];
             instance.GetComponent<EvenPoint>().ActiveDistace = clickDistance;
+            instance.GetComponent<EvenPoint>().Spavner = gameObject;
             instance.transform.localPosition = _map.GeoToWorldPosition(_locations[i], true);
             instance.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
             _spawnedObjects.Add(instance);
