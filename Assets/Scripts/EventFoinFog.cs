@@ -1,15 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Mapbox.Examples;
 using Mapbox.Utils;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
-public class EvenPoint : MonoBehaviour
+public class EventFoinFog : MonoBehaviour
 {
     private LocationStatus _player;
-    [SerializeField]private float activDistace;
+    [SerializeField] private float activDistace;
     [SerializeField] public Vector2d _position;
-    
+ 
+    private GameObject spavnerQuestions;
+
+    public GameObject SpavnewQuestions
+    {
+        get
+        {
+            return spavnerQuestions;
+        }
+        set
+        {
+            if(value != null)
+                spavnerQuestions = value;
+        }
+    }
+
     private GameObject spavner;
 
     public GameObject Spavner
@@ -17,7 +33,7 @@ public class EvenPoint : MonoBehaviour
         get => spavner;
         set
         {
-            if(value != null)
+            if (value != null)
                 spavner = value;
         }
     }
@@ -40,6 +56,7 @@ public class EvenPoint : MonoBehaviour
     public void OnObjectClick()
     {
         _player = GameObject.Find("Canvas").GetComponent<LocationStatus>();
+        SpawnFog fog = Spavner.GetComponent<SpawnFog>();
         var currentPlayerLoc = new GeoCoordinatePortable.GeoCoordinate(_player.GetLocationLat(), _player.GetLocationLong());
         var eventLoc = new GeoCoordinatePortable.GeoCoordinate(_position[0], _position[1]);
         var distance = currentPlayerLoc.GetDistanceTo(eventLoc);
@@ -47,6 +64,8 @@ public class EvenPoint : MonoBehaviour
         if (distance <= activDistace)
         {
             gameObject.SetActive(false);
+            fog.Fog.gameObject.SetActive(false);
+            SpavnewQuestions.SetActive(true);
         }
     }
 

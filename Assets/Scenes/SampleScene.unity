@@ -1746,7 +1746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _map: {fileID: 1787700008}
   _spawnScale: 1
-  _markerPrefab: {fileID: 5276258346820293777, guid: acc5a6d26d67c684794dc62e7662c7e5, type: 3}
+  _markerPrefab: {fileID: 5276258346820293777, guid: 7c4e84ccdb952034fb3acd51447d7c39, type: 3}
   _rectanglePrefab: {fileID: 8164402251816540447, guid: 0d8ffcdcadb228d4585dc8afff9e1c52, type: 3}
   SavePath: FogCenter.json
   defArr:
@@ -1754,7 +1754,9 @@ MonoBehaviour:
   - 57.7706249013583, 40.91697769417456
   - 57.77370549989365, 40.93985385717708
   - 57.76572578507874, 40.94240616160308
+  - 57.76135418007672, 40.92971513785199
   clickDistance: 70
+  spantQues: {fileID: 731915764}
 --- !u!1 &361447172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2964,7 +2966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &731915766
 Transform:
   m_ObjectHideFlags: 0

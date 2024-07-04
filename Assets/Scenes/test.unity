@@ -1581,6 +1581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 338747593}
   - component: {fileID: 338747594}
+  - component: {fileID: 338747595}
   m_Layer: 0
   m_Name: -SpawFog
   m_TagString: Untagged
@@ -1616,8 +1617,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 1787700008}
-  _spawnScale: 1
-  _markerPrefab: {fileID: 5276258346820293777, guid: acc5a6d26d67c684794dc62e7662c7e5, type: 3}
+  _spawnScale: 5
+  _markerPrefab: {fileID: 5276258346820293777, guid: 7c4e84ccdb952034fb3acd51447d7c39, type: 3}
   _rectanglePrefab: {fileID: 8164402251816540447, guid: 0d8ffcdcadb228d4585dc8afff9e1c52, type: 3}
   SavePath: FogTest.json
   defArr:
@@ -1625,7 +1626,25 @@ MonoBehaviour:
   - 57.73679760506654, 40.91867887907911
   - 57.73576697866771, 40.92082607689424
   - 57.73634971963204, 40.921836522924885
+  - 57.736018595818734, 40.92097609659555
   clickDistance: 100
+  spantQues: {fileID: 731915764}
+--- !u!114 &338747595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338747591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411a25afdbde52a4aafd9fb2563d2bbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activDistace: 0
+  _position:
+    x: 0
+    y: 0
 --- !u!1 &367130806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,7 +2797,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &731915766
 Transform:
   m_ObjectHideFlags: 0
