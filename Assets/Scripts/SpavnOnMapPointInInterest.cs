@@ -51,10 +51,117 @@ public class SpavnOnMapPointInInterest : MonoBehaviour
             instance.GetComponent<EvenPoint>()._position = _locations[i];
             instance.GetComponent<EvenPoint>().ActiveDistace = clickDistance;
             instance.GetComponent<EvenPoint>().Spavner = gameObject;
+            GameObject panel = GetPanelQuestions(locationString);
+            panel.GetComponent<Complete>().Point = instance; 
+            instance.GetComponent<EvenPoint>().Panel = panel;
+
+
             instance.transform.localPosition = _map.GeoToWorldPosition(_locations[i], true);
             instance.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
             _spawnedObjects.Add(instance);
         }
+    }
+
+    private GameObject Search(string tag, GameObject[] allObjects)
+    {
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.tag == tag)
+            {
+                return obj;
+            }
+        }
+        return null;
+    }
+
+    private GameObject GetPanelQuestions(string location)
+    {
+        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+        switch (location)
+        {
+            case ("57.768520055575486, 40.92599575087467"):
+                {
+                    try
+                    {
+                        return Search("Calancha", allObjects);
+                    }catch(System.Exception e)
+                    { 
+                        break;
+                    }
+                }
+            case ("57.76697615890837, 40.92477886355354"):
+                {
+                    try
+                    {
+                        return Search("Sysanin", allObjects);
+                    }catch(System.Exception e)
+                    {
+                        break;
+                    }
+                }
+            case ("57.76729913262451, 40.92766853590996"):
+                {
+                    try
+                    {
+                        return Search("Snegyrka", allObjects);
+                    }catch(System.Exception e)
+                    {
+                        break ;
+                    }
+                }
+            case ("57.76657623559337, 40.9293277628552"):
+                {
+                    try
+                    {
+                        return Search("Dolgoryki", allObjects);
+                    }catch(System.Exception e)
+                    {
+                        break;
+                    }
+                }
+            case ("57.77023610885775, 40.93150122896323"):
+                {
+                    try
+                    {
+                        return Search("Teatr", allObjects);
+                    }catch(System.Exception e)
+                    {
+                        break;
+                    }
+                }
+            case ("57.77261425824748, 40.93944449575506"):
+                {
+                    try
+                    {
+                        return Search("MonymentSlavi", allObjects);
+                    }catch(System.Exception e)
+                    {
+                        break;
+                    }
+                }
+            case ("57.770261746665504, 40.91809192389704"):
+                {
+                    try
+                    {
+                        return Search("Osnovanie", allObjects);
+                    }catch(System.Exception e)
+                    {
+                        break;
+                    }
+                }
+            case ("57.76172212278889, 40.92876323614582"):
+                {
+                    try
+                    {
+                        return Search("Besedka", allObjects);
+                    }catch(System.Exception e)
+                    {
+                        break;
+                    }
+                }
+            default: return Search("Besedka", allObjects); ;
+        }
+        return null;
     }
 
     private void Update()

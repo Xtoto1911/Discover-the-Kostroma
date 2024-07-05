@@ -6,10 +6,24 @@ using Mapbox.Utils;
 
 public class EvenPoint : MonoBehaviour
 {
-    private LocationStatus _player;
-    [SerializeField]private float activDistace;
+    public LocationStatus _player;
+    [SerializeField] public float activDistace;
     [SerializeField] public Vector2d _position;
-    
+
+    [SerializeField]private GameObject _panel;
+
+    public GameObject Panel
+    {
+        get => _panel;
+        set
+        {
+            if (value != null)
+            {
+                _panel = value;
+                
+            }
+        }
+    }
     private GameObject spavner;
 
     public GameObject Spavner
@@ -37,16 +51,19 @@ public class EvenPoint : MonoBehaviour
         }
     }
 
+    
+
     public void OnObjectClick()
     {
         _player = GameObject.Find("Canvas").GetComponent<LocationStatus>();
+        
         var currentPlayerLoc = new GeoCoordinatePortable.GeoCoordinate(_player.GetLocationLat(), _player.GetLocationLong());
         var eventLoc = new GeoCoordinatePortable.GeoCoordinate(_position[0], _position[1]);
         var distance = currentPlayerLoc.GetDistanceTo(eventLoc);
         Debug.Log($"{distance}");
-        if (distance <= activDistace)
+        if (distance <= activDistace && _panel != null)
         {
-            gameObject.SetActive(false);
+            _panel.SetActive(true);
         }
     }
 
