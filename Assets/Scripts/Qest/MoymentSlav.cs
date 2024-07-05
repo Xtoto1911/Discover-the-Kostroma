@@ -40,7 +40,6 @@ public class MoymentSlav : MonoBehaviour
             instance.GetComponent<EventFinish>().Panel = _finPanel;
             instance.transform.localPosition = _map.GeoToWorldPosition(_pos, true);
             instance.transform.localScale = new Vector3(5, 5, 5);
-            GameObject.Find("Canvas").GetComponent<ProgressScenter>().Progress += 12.5f;
             Point.SetActive(false);
         }
         Debug.Log($"{text.text}");

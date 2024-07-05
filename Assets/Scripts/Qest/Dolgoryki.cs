@@ -41,7 +41,6 @@ public class Dolgoryki : MonoBehaviour
             instance.transform.localPosition = _map.GeoToWorldPosition(_pos, true);
             instance.transform.localScale = new Vector3(5, 5, 5);
             Point.SetActive(false);
-            GameObject.Find("Canvas").GetComponent<ProgressScenter>().Progress += 12.5f;
         }
         Debug.Log($"{text.text}");
     }
